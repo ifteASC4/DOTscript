@@ -30,7 +30,7 @@ def open_win():  # opens new window for the tutorial
     midframe.pack()
     botframe = Frame(new)
     botframe.pack(side=BOTTOM, pady=20)
-    
+
     # start of topframe
     # step 1:
     Label(topframe, text="STEP 1: Hover over the color button and press 1").pack()
@@ -45,11 +45,48 @@ def open_win():  # opens new window for the tutorial
     # step 5:
     Label(topframe, text="STEP 5: Hover over the location button and press 5").pack()
 
+    #end of steps/ status
+    test = Label(topframe,text="current action: ",font=("Helvetica", 25),borderwidth=1,relief="solid",bg="white",fg="black")
+    new.bind('1',step1)
+    new.bind('2',step2)
+    new.bind('3',step3)
+    new.bind('4',step4)
+    new.bind('5',step5)
+    test.pack(padx=15,pady=15,ipadx=15,ipady=15)
+    #end of top frame stuff
+
     # buttom frame begins
     ttk.Button(botframe, text='Close', command=new.destroy).pack(padx=10,pady=10,ipadx=20,ipady=60)
     # buttom frame ends
     new.grab_set()
 
+#############  helper methods: ###################
+def step1(event): #works fine
+   print("test")
+   global colorPos
+   colorPos = pyautogui.position()
+
+def step2(event): #works fine
+   print("test2")
+   global purplePos
+   purplePos = pyautogui.position()
+
+def step3(event): #works fine
+   print("test2")
+   global commentPos
+   commentPos = pyautogui.position()
+
+def step4(event): #works fine
+   print("test2")
+   global savePos
+   savePos = pyautogui.position()
+
+def step5(event): #works fine
+   print("test2")
+   global locationPos
+   locationPos = pyautogui.position()
+
+############# End of Helpers ####################
 # Create a label
 Label(win, text="Click the below button to start set up",
       font=('Helvetica 17 bold')).pack(pady=30)
