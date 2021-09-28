@@ -1,7 +1,6 @@
-from os import name
 from tkinter import *
 from tkinter import ttk
-# import keyboard
+import keyboard
 import pyautogui
 import pickle
 
@@ -101,6 +100,17 @@ def open_win():  # opens new window for the tutorial
     # buttom frame ends
     new.grab_set()
 
+def open_run(): #opens new windown to run script
+    run = Toplevel(win)
+    run.geometry("300x300")
+    run.title("SCRIPT RUNNING")
+    Label(run,text='Script is running, press 1 to collect data.',font=('Helvetica 15 ')).pack(pady=5)
+    Label(run,text='Press the close button below to end',font=('Helvetica 15 ')).pack(pady=5)
+    #run.bind('b',keyboard_press)
+    ttk.Button(run, text='Close', command=run.destroy).pack(
+        padx=10, pady=10, ipadx=20, ipady=60)
+    # buttom frame ends
+    run.grab_set()
 #############  helper methods: ###################
 def step1(event):  # works fine
     global colorPos
@@ -154,6 +164,7 @@ def openData(): #load in position data after starting program
     print("finished loading data!")
     tempDisplay()
 
+
 def tempDisplay(): # use to test in terminal
     print("color postion: ", colorPos)
     print("purple postion: ", purplePos)
@@ -166,6 +177,7 @@ tempDisplay()
 # Create a label
 Label(win, text="Click the below button to start set up",
       font=('Helvetica 15')).pack()
+Label(win, text="If you successfully did setup skip to load data").pack()
 # Create a button to open a New Windows
 ttk.Button(win, text='Set Up Tutortial', command=open_win).pack(pady=5)
 Label(win, text="MUST LOAD OLD DATA FIRST or script won't work",
@@ -173,8 +185,26 @@ Label(win, text="MUST LOAD OLD DATA FIRST or script won't work",
 Label(win, text="Click Load button to load saved data",
       font=('Helvetica 15 ')).pack()
 ttk.Button(win, text='Load', command=openData).pack(pady=5)
+Label(win, text="Now you can click the button below to run program",
+      font=('Helvetica 15 ')).pack()
+ttk.Button(win, text='RUN SCRIPT', command=open_run).pack(pady=5)
 ttk.Button(win, text='Close', command=win.destroy).pack(
     padx=10, pady=10, ipadx=20, ipady=60)
 win.mainloop()
 
-tempDisplay()
+# def keyboard_press(event):
+#     #pyautogui.moveTo(1000,1000);pyautogui.dragTo(button='left')
+#     pyautogui.click(colorPos, button = 'left')
+#     pyautogui.click(purplePos, button = 'left')
+#     #This is the purple color ^
+#     pyautogui.click(commentPos, button = 'left'); pyautogui.typewrite("N/A")
+#     pyautogui.click(savePos, button = 'left')
+#     pyautogui.click(locationPos, button = 'left')
+#     tempDisplay()
+#     print("workin")
+
+# while True:
+#     if keyboard.is_pressed('1'):
+#         keyboard_press()
+#     if keyboard.is_pressed('2'):
+#         exit()
