@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import ttk
 # import keyboard
 import pyautogui
+import pickle
 
 # global variables
 width, height = pyautogui.size()  # screen size
@@ -18,10 +19,10 @@ commentVar = StringVar(); commentVar.set(commentPos)
 saveVar = StringVar(); saveVar.set(savePos)
 locationVar = StringVar(); locationVar.set(locationPos)
 # Set the geometry of tkinter frame
-win.geometry("400x400")  # main window
+win.geometry("500x500")  # main window
 win.title("Main Window")
 ttk.Label(win, text="Welcome!", font=("Helvetica", 25)
-          ).pack(padx=15, pady=5, ipadx=15, ipady=15)
+          ).pack(padx=15, pady=15)
 
 
 def open_win():  # opens new window for the tutorial
@@ -40,22 +41,24 @@ def open_win():  # opens new window for the tutorial
 
     # start of topframe
     # step 1:
-    Label(topframe, text="STEP 1: Hover over the color button and press 1").pack()
-
+    Label(topframe, text="STEP 1: Hover over the color button and press 1",
+          font=("Helvetica", 20)).pack()
     # step 2:
     Label(topframe, text="STEP 2: Hover over the purple and press 2",
           font=("Helvetica", 20)).pack()
-
     # step 3:
-    Label(topframe, text="STEP 3: Hover over the comment attribute box and press 3").pack()
+    Label(topframe, text="STEP 3: Hover over the comment attribute box and press 3",
+          font=("Helvetica", 20)).pack()
     # step 4:
-    Label(topframe, text="STEP 4: Hover over the save measurment button and press 4").pack()
+    Label(topframe, text="STEP 4: Hover over the save measurment button and press 4",
+          font=("Helvetica", 20)).pack()
     # step 5:
-    Label(topframe, text="STEP 5: Hover over the location button and press 5").pack()
+    Label(topframe, text="STEP 5: Hover over the location button and press 5",
+          font=("Helvetica", 20)).pack()
 
     # end of steps/ status 
-    test = Label(topframe, text="current action: ", font=(
-        "Helvetica", 25), borderwidth=1, relief="solid", bg="white", fg="black")#needs fixing
+    test = Label(topframe, text="Current Location Values Below: ", font=(
+        "Helvetica", 15), borderwidth=1, relief="solid", bg="white", fg="black")#needs fixing
     new.bind('1', step1)
     new.bind('2', step2)
     new.bind('3', step3)
@@ -65,7 +68,8 @@ def open_win():  # opens new window for the tutorial
     # end of top frame stuff
 
     # midframe begins
-    Label(midframe, text="Current X and Y Positions Seperated by a Space").pack()
+    Label(midframe, text="Current X and Y Positions Seperated by a Space",font=(
+        "Helvetica", 15), borderwidth=1, relief="solid", bg="white", fg="black").pack()
     f1 = Frame(midframe); f1.pack()
     f2 = Frame(midframe); f2.pack()
     f3 = Frame(midframe); f3.pack()
@@ -85,6 +89,13 @@ def open_win():  # opens new window for the tutorial
     # midframe ends
 
     # buttom frame begins
+    Label(botframe,text="Finally make sure the above point are accurate x and y points",
+              font=("Helvetica", 20)).pack()
+    Label(botframe,text="DONT FORGET TO",
+              font=("Helvetica", 20)).pack()
+    Label(botframe,text="Press save or you will have to redo this again!!!!",
+              font=("Helvetica", 20)).pack()
+    ttk.Button(botframe,text='SAVE',command=saveData).pack()   
     ttk.Button(botframe, text='Close', command=new.destroy).pack(
         padx=10, pady=10, ipadx=20, ipady=60)
     # buttom frame ends
@@ -116,21 +127,52 @@ def step5(event): #works fine
     locationPos = pyautogui.position()
     locationVar.set(locationPos)#update global pos
 
-def tempDisplay(): # need to make this work with display 
+def saveData(): #use to save position data
+    data = []
+    data.append(colorPos)
+    data.append(purplePos)
+    data.append(commentPos)
+    data.append(savePos)
+    data.append(locationPos)
+    print(data)
+    file = open('setupData', 'wb')
+    pickle.dump(data, file)
+    file.close()
+    print("successfully saved everything!")
+
+def openData(): #load in position data after starting program
+    file = open('setupData', 'rb')
+    data = pickle.load(file)
+    file.close()
+    global colorPos, purplePos,commentPos,savePos,locationPos
+    colorPos = data[0]
+    purplePos = data[1]
+    commentPos = data[2]
+    savePos = data[3]
+    locationPos = data[4]
+    #Label(win,text="Loaded saved data successfully, You can start script")
+    print("finished loading data!")
+    tempDisplay()
+
+def tempDisplay(): # use to test in terminal
     print("color postion: ", colorPos)
     print("purple postion: ", purplePos)
     print("comment postion: ", commentPos)
     print("save postion: ", savePos)
     print("location button: ", locationPos)
-
 ############# End of Helpers ##################
 
 tempDisplay()
 # Create a label
 Label(win, text="Click the below button to start set up",
-      font=('Helvetica 17 bold')).pack(pady=30)
+      font=('Helvetica 15')).pack()
 # Create a button to open a New Windows
-ttk.Button(win, text='Set Up Tutortial', command=open_win).pack()
+ttk.Button(win, text='Set Up Tutortial', command=open_win).pack(pady=5)
+Label(win, text="MUST LOAD OLD DATA FIRST or script won't work",
+      font=('Helvetica 15 bold')).pack()
+Label(win, text="Click Load button to load saved data",
+      font=('Helvetica 15 ')).pack()
+ttk.Button(win, text='Load', command=openData).pack(pady=5)
 ttk.Button(win, text='Close', command=win.destroy).pack(
     padx=10, pady=10, ipadx=20, ipady=60)
 win.mainloop()
