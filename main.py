@@ -102,10 +102,8 @@ def open_win():  # opens new window for the tutorial
     # buttom frame ends
     new.grab_set()
 
-def keyboard_press(event):
-    #this isnt working on mca for some reason, ram issues i think 
-    #gotta try this on windows and see if that works
-
+#N/A comment keypress function
+def keyboard_press(event): 
     #pyautogui.moveTo(1000,1000);pyautogui.dragTo(button='left')
     #pyautogui.moveTo(colorPos[0],colorPos[1])
     pyautogui.click(colorPos,button='left')
@@ -119,6 +117,34 @@ def keyboard_press(event):
     tempDisplay()
     print("workin")
 
+#DOT? comment keypress function
+def keyboard_press2(event):
+    #pyautogui.moveTo(1000,1000);pyautogui.dragTo(button='left')
+    #pyautogui.moveTo(colorPos[0],colorPos[1])
+    pyautogui.click(colorPos,button='left')
+    pyautogui.click(colorPos,button='left')
+    pyautogui.click(purplePos, button = 'left')
+    #pyautogui.doubleClick()
+    #This is the purple color ^
+    pyautogui.click(commentPos); pyautogui.typewrite("DOT?")
+    pyautogui.click(savePos, button = 'left')
+    pyautogui.click(locationPos, button = 'left')
+    tempDisplay()
+
+#Broken comment keypress function
+def keyboard_press3(event):
+    #pyautogui.moveTo(1000,1000);pyautogui.dragTo(button='left')
+    #pyautogui.moveTo(colorPos[0],colorPos[1])
+    pyautogui.click(colorPos,button='left')
+    pyautogui.click(colorPos,button='left')
+    pyautogui.click(purplePos, button = 'left')
+    #pyautogui.doubleClick()
+    #This is the purple color ^
+    pyautogui.click(commentPos); pyautogui.typewrite("Broken")
+    pyautogui.click(savePos, button = 'left')
+    pyautogui.click(locationPos, button = 'left')
+    tempDisplay()
+
 def open_run(): #opens new windown to run script
     run = Toplevel(win)
     run.geometry("300x300")
@@ -127,6 +153,8 @@ def open_run(): #opens new windown to run script
     Label(run,text='Press the close button below to end',font=('Helvetica 15 ')).pack(pady=5)
     #print(colorPos[1])
     run.bind('1',keyboard_press)
+    run.bind('2',keyboard_press2)
+    run.bind('3',keyboard_press3)
     ttk.Button(run, text='Close', command=run.destroy).pack(
         padx=10, pady=10, ipadx=20, ipady=60)
     # buttom frame ends
@@ -211,7 +239,16 @@ ttk.Button(win, text='Close', command=win.destroy).pack(
     padx=10, pady=10, ipadx=20, ipady=60)
 win.mainloop()
 
+# count = 0
+# while True:
+#     if keyboard.is_pressed('1'):
+#         print("test")
+#         count+=1
+#         continue
+#     if keyboard.is_pressed('2'):
+#         break
 
+#print(count)
 # while True:
 #     if keyboard.is_pressed('1'):
 #         keyboard_press()
