@@ -1,3 +1,5 @@
+#Credits: 
+
 from tkinter import *
 from tkinter import ttk
 import keyboard
@@ -100,13 +102,31 @@ def open_win():  # opens new window for the tutorial
     # buttom frame ends
     new.grab_set()
 
+def keyboard_press(event):
+    #this isnt working on mca for some reason, ram issues i think 
+    #gotta try this on windows and see if that works
+
+    #pyautogui.moveTo(1000,1000);pyautogui.dragTo(button='left')
+    #pyautogui.moveTo(colorPos[0],colorPos[1])
+    pyautogui.click(colorPos,button='left')
+    pyautogui.click(colorPos,button='left')
+    pyautogui.click(purplePos, button = 'left')
+    #pyautogui.doubleClick()
+    #This is the purple color ^
+    pyautogui.click(commentPos); pyautogui.typewrite("N/A")
+    pyautogui.click(savePos, button = 'left')
+    pyautogui.click(locationPos, button = 'left')
+    tempDisplay()
+    print("workin")
+
 def open_run(): #opens new windown to run script
     run = Toplevel(win)
     run.geometry("300x300")
     run.title("SCRIPT RUNNING")
     Label(run,text='Script is running, press 1 to collect data.',font=('Helvetica 15 ')).pack(pady=5)
     Label(run,text='Press the close button below to end',font=('Helvetica 15 ')).pack(pady=5)
-    #run.bind('b',keyboard_press)
+    #print(colorPos[1])
+    run.bind('1',keyboard_press)
     ttk.Button(run, text='Close', command=run.destroy).pack(
         padx=10, pady=10, ipadx=20, ipady=60)
     # buttom frame ends
@@ -164,7 +184,6 @@ def openData(): #load in position data after starting program
     print("finished loading data!")
     tempDisplay()
 
-
 def tempDisplay(): # use to test in terminal
     print("color postion: ", colorPos)
     print("purple postion: ", purplePos)
@@ -192,16 +211,6 @@ ttk.Button(win, text='Close', command=win.destroy).pack(
     padx=10, pady=10, ipadx=20, ipady=60)
 win.mainloop()
 
-# def keyboard_press(event):
-#     #pyautogui.moveTo(1000,1000);pyautogui.dragTo(button='left')
-#     pyautogui.click(colorPos, button = 'left')
-#     pyautogui.click(purplePos, button = 'left')
-#     #This is the purple color ^
-#     pyautogui.click(commentPos, button = 'left'); pyautogui.typewrite("N/A")
-#     pyautogui.click(savePos, button = 'left')
-#     pyautogui.click(locationPos, button = 'left')
-#     tempDisplay()
-#     print("workin")
 
 # while True:
 #     if keyboard.is_pressed('1'):
