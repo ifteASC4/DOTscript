@@ -1,10 +1,14 @@
-#Credits: 
+#Credits:
+#Original code by: Nixon Lazaro
+#Modified by: Ifte Ahmed
+#DOT SDG SCRIPT
 
 from tkinter import *
 from tkinter import ttk
 import keyboard
 import pyautogui
 import pickle
+import time
 
 # global variables
 width, height = pyautogui.size()  # screen size
@@ -103,10 +107,10 @@ def open_win():  # opens new window for the tutorial
     new.grab_set()
 
 #N/A comment keypress function
-def keyboard_press(event): 
+def keyboard_press(): 
     #pyautogui.moveTo(1000,1000);pyautogui.dragTo(button='left')
     #pyautogui.moveTo(colorPos[0],colorPos[1])
-    pyautogui.click(colorPos,button='left')
+    #pyautogui.click(colorPos,button='left')
     pyautogui.click(colorPos,button='left')
     pyautogui.click(purplePos, button = 'left')
     #pyautogui.doubleClick()
@@ -118,10 +122,10 @@ def keyboard_press(event):
     print("workin")
 
 #DOT? comment keypress function
-def keyboard_press2(event):
+def keyboard_press2():
     #pyautogui.moveTo(1000,1000);pyautogui.dragTo(button='left')
     #pyautogui.moveTo(colorPos[0],colorPos[1])
-    pyautogui.click(colorPos,button='left')
+    #pyautogui.click(colorPos,button='left')
     pyautogui.click(colorPos,button='left')
     pyautogui.click(purplePos, button = 'left')
     #pyautogui.doubleClick()
@@ -132,10 +136,10 @@ def keyboard_press2(event):
     tempDisplay()
 
 #Broken comment keypress function
-def keyboard_press3(event):
+def keyboard_press3():
     #pyautogui.moveTo(1000,1000);pyautogui.dragTo(button='left')
     #pyautogui.moveTo(colorPos[0],colorPos[1])
-    pyautogui.click(colorPos,button='left')
+    #pyautogui.click(colorPos,button='left')
     pyautogui.click(colorPos,button='left')
     pyautogui.click(purplePos, button = 'left')
     #pyautogui.doubleClick()
@@ -239,18 +243,46 @@ ttk.Button(win, text='Close', command=win.destroy).pack(
     padx=10, pady=10, ipadx=20, ipady=60)
 win.mainloop()
 
-# count = 0
-# while True:
-#     if keyboard.is_pressed('1'):
-#         print("test")
-#         count+=1
-#         continue
-#     if keyboard.is_pressed('2'):
-#         break
+#********************************#
+'''
+Next steps: 
 
-#print(count)
-# while True:
-#     if keyboard.is_pressed('1'):
-#         keyboard_press()
-#     if keyboard.is_pressed('2'):
-#         exit()
+-edit readme file with steps you might need to start up etc
+
+-document the code and make exe file to see if it works on both mac and windows
+
+-figure out how to send out exe file
+
+-need to figure out how to run this in the background so it works without
+having to constantly open the window
+
+-make a video tutorial of how to start up
+'''
+
+def methods():
+    key = keyboard.read_key()
+
+    if key == '1':
+        print("Option {} was pressed\n".format(key))
+        keyboard_press()
+    elif key == '2':
+        print("Option {} was pressed\n".format(key))
+        keyboard_press2()
+    elif key == '3':
+        print("Option {} was pressed\n".format(key))
+        keyboard_press3()
+    elif key == 'esc':
+        print("Exiting the script.........\n")
+        exit(0)
+    else :
+        print("Invalid key\n")
+
+
+print('press 1 for N/A')
+print('press 2 for DOT?')
+print('press 3 for Broken')
+print('press esc key to exit')
+
+while (True):
+    methods()
+    #time.sleep(6)
