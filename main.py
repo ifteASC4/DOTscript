@@ -118,8 +118,7 @@ def keyboard_press():
     pyautogui.click(commentPos); pyautogui.typewrite("N/A")
     pyautogui.click(savePos, button = 'left')
     pyautogui.click(locationPos, button = 'left')
-    tempDisplay()
-    print("workin")
+    #tempDisplay()
 
 #DOT? comment keypress function
 def keyboard_press2():
@@ -133,7 +132,7 @@ def keyboard_press2():
     pyautogui.click(commentPos); pyautogui.typewrite("DOT?")
     pyautogui.click(savePos, button = 'left')
     pyautogui.click(locationPos, button = 'left')
-    tempDisplay()
+    #tempDisplay()
 
 #Broken comment keypress function
 def keyboard_press3():
@@ -147,22 +146,22 @@ def keyboard_press3():
     pyautogui.click(commentPos); pyautogui.typewrite("Broken")
     pyautogui.click(savePos, button = 'left')
     pyautogui.click(locationPos, button = 'left')
-    tempDisplay()
+    #tempDisplay()
 
-def open_run(): #opens new windown to run script
-    run = Toplevel(win)
-    run.geometry("300x300")
-    run.title("SCRIPT RUNNING")
-    Label(run,text='Script is running, press 1 to collect data.',font=('Helvetica 15 ')).pack(pady=5)
-    Label(run,text='Press the close button below to end',font=('Helvetica 15 ')).pack(pady=5)
-    #print(colorPos[1])
-    run.bind('1',keyboard_press)
-    run.bind('2',keyboard_press2)
-    run.bind('3',keyboard_press3)
-    ttk.Button(run, text='Close', command=run.destroy).pack(
-        padx=10, pady=10, ipadx=20, ipady=60)
-    # buttom frame ends
-    run.grab_set()
+# def open_run(): #opens new windown to run script
+#     run = Toplevel(win)
+#     run.geometry("300x300")
+#     run.title("SCRIPT RUNNING")
+#     Label(run,text='Script is running, press 1 to collect data.',font=('Helvetica 15 ')).pack(pady=5)
+#     Label(run,text='Press the close button below to end',font=('Helvetica 15 ')).pack(pady=5)
+#     #print(colorPos[1])
+#     # run.bind('1',keyboard_press)
+#     # run.bind('2',keyboard_press2)
+#     # run.bind('3',keyboard_press3)
+#     ttk.Button(run, text='Close', command=run.destroy).pack(
+#         padx=10, pady=10, ipadx=20, ipady=60)
+#     # buttom frame ends
+#     run.grab_set()
 #############  helper methods: ###################
 def step1(event):  # works fine
     global colorPos
@@ -238,9 +237,13 @@ Label(win, text="Click Load button to load saved data",
 ttk.Button(win, text='Load', command=openData).pack(pady=5)
 Label(win, text="Now you can click the button below to run program",
       font=('Helvetica 15 ')).pack()
-ttk.Button(win, text='RUN SCRIPT', command=open_run).pack(pady=5)
-ttk.Button(win, text='Close', command=win.destroy).pack(
-    padx=10, pady=10, ipadx=20, ipady=60)
+ttk.Button(win, text='RUN SCRIPT', command=win.destroy).pack(pady=5)
+Label(win,text='Press 1 key to collect and write N/A',font=('Helvetica 15 ')).pack(pady=5)
+Label(win,text='Press 2 key to collect and write DOT?',font=('Helvetica 15 ')).pack(pady=5)
+Label(win,text='Press 3 key to collect and write broken',font=('Helvetica 15 ')).pack(pady=5)
+Label(win,text='Press the esc key to exit script',font=('Helvetica 15 ')).pack(pady=5)
+#ttk.Button(win, text='Close', command=win.destroy).pack(
+    #padx=10, pady=10, ipadx=20, ipady=60)
 win.mainloop()
 
 #********************************#
