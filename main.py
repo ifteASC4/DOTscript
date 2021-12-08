@@ -47,19 +47,19 @@ def open_win():  # opens new window for the tutorial
     # start of topframe
     # step 1:
     Label(topframe, text="STEP 1: Hover over the color button and press 1",
-          font=("Helvetica", 20)).pack()
+          font=("Helvetica", 15)).pack()
     # step 2:
     Label(topframe, text="STEP 2: Hover over the purple and press 2",
-          font=("Helvetica", 20)).pack()
+          font=("Helvetica", 15)).pack()
     # step 3:
     Label(topframe, text="STEP 3: Hover over the comment attribute box and press 3",
-          font=("Helvetica", 20)).pack()
+          font=("Helvetica", 15)).pack()
     # step 4:
     Label(topframe, text="STEP 4: Hover over the save measurment button and press 4",
-          font=("Helvetica", 20)).pack()
+          font=("Helvetica", 15)).pack()
     # step 5:
     Label(topframe, text="STEP 5: Hover over the location button and press 5",
-          font=("Helvetica", 20)).pack()
+          font=("Helvetica", 15)).pack()
 
     # end of steps/ status 
     test = Label(topframe, text="Current Location Values Below: ", font=(
@@ -95,14 +95,14 @@ def open_win():  # opens new window for the tutorial
 
     # buttom frame begins
     Label(botframe,text="Finally make sure the above point are accurate x and y points",
-              font=("Helvetica", 20)).pack()
+              font=("Helvetica", 15)).pack()
     Label(botframe,text="DONT FORGET TO",
-              font=("Helvetica", 20)).pack()
+              font=("Helvetica", 15)).pack()
     Label(botframe,text="Press save or you will have to redo this again!!!!",
-              font=("Helvetica", 20)).pack()
-    ttk.Button(botframe,text='SAVE',command=saveData).pack()   
-    ttk.Button(botframe, text='Close', command=new.destroy).pack(
-        padx=10, pady=10, ipadx=20, ipady=60)
+              font=("Helvetica", 15)).pack()
+    ttk.Button(botframe,text='SAVE',command=saveData).pack(   
+        padx=10, pady=10, ipadx=20, ipady=20)   
+    ttk.Button(botframe, text='Close', command=new.destroy).pack()
     # buttom frame ends
     new.grab_set()
 
@@ -229,9 +229,10 @@ ttk.Button(win, text='RUN SCRIPT', command=win.destroy).pack(pady=5)
 Label(win,text='Press 1 key to collect and write N/A',font=('Helvetica 15 ')).pack(pady=5)
 Label(win,text='Press 2 key to collect and write DOT?',font=('Helvetica 15 ')).pack(pady=5)
 Label(win,text='Press 3 key to collect and write broken',font=('Helvetica 15 ')).pack(pady=5)
-Label(win,text='Press the esc key to exit script',font=('Helvetica 15 ')).pack(pady=5)
+Label(win,text='Press the esc key 2 times to exit script',font=('Helvetica 15 ')).pack(pady=5)
 #ttk.Button(win, text='Close', command=win.destroy).pack(
     #padx=10, pady=10, ipadx=20, ipady=60)
+win.bind('<Escape>',lambda x: win.destroy())
 win.mainloop()
 
 #********************************#
@@ -239,11 +240,6 @@ win.mainloop()
 Next steps: 
 
 -edit readme file with steps you might need to start up etc
-
--document the code and make exe file to see if it works on both mac and windows
-
--figure out how to send out exe file
-
 -make a video tutorial of how to start up
 '''
 
@@ -267,4 +263,4 @@ def methods():
 
 while (True):
     methods()
-    time.sleep(6)
+    time.sleep(1)
