@@ -108,12 +108,8 @@ def open_win():  # opens new window for the tutorial
 
 #N/A comment keypress function
 def keyboard_press(): 
-    #pyautogui.moveTo(1000,1000);pyautogui.dragTo(button='left')
-    #pyautogui.moveTo(colorPos[0],colorPos[1])
-    #pyautogui.click(colorPos,button='left')
     pyautogui.click(colorPos,button='left')
     pyautogui.click(purplePos, button = 'left')
-    #pyautogui.doubleClick()
     #This is the purple color ^
     pyautogui.click(commentPos); pyautogui.typewrite("N/A")
     pyautogui.click(savePos, button = 'left')
@@ -122,12 +118,8 @@ def keyboard_press():
 
 #DOT? comment keypress function
 def keyboard_press2():
-    #pyautogui.moveTo(1000,1000);pyautogui.dragTo(button='left')
-    #pyautogui.moveTo(colorPos[0],colorPos[1])
-    #pyautogui.click(colorPos,button='left')
     pyautogui.click(colorPos,button='left')
     pyautogui.click(purplePos, button = 'left')
-    #pyautogui.doubleClick()
     #This is the purple color ^
     pyautogui.click(commentPos); pyautogui.typewrite("DOT?")
     pyautogui.click(savePos, button = 'left')
@@ -136,12 +128,8 @@ def keyboard_press2():
 
 #Broken comment keypress function
 def keyboard_press3():
-    #pyautogui.moveTo(1000,1000);pyautogui.dragTo(button='left')
-    #pyautogui.moveTo(colorPos[0],colorPos[1])
-    #pyautogui.click(colorPos,button='left')
     pyautogui.click(colorPos,button='left')
     pyautogui.click(purplePos, button = 'left')
-    #pyautogui.doubleClick()
     #This is the purple color ^
     pyautogui.click(commentPos); pyautogui.typewrite("Broken")
     pyautogui.click(savePos, button = 'left')
@@ -256,9 +244,6 @@ Next steps:
 
 -figure out how to send out exe file
 
--need to figure out how to run this in the background so it works without
-having to constantly open the window
-
 -make a video tutorial of how to start up
 '''
 
@@ -280,12 +265,6 @@ def methods():
     else :
         print("Invalid key\n")
 
-
-print('press 1 for N/A')
-print('press 2 for DOT?')
-print('press 3 for Broken')
-print('press esc key to exit')
-
 while (True):
     methods()
-    #time.sleep(6)
+    time.sleep(6)
