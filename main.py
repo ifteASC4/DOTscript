@@ -28,7 +28,7 @@ win = Tk()
 # set up tkinter global variables
 colorVar = StringVar(); colorVar.set(colorVar)
 purpleVar = StringVar(); purpleVar.set(purplePos)
-commentVar = StringVar(); commentVar.set(commentPos)
+typeVar = StringVar(); typeVar.set(typePos)
 saveVar = StringVar(); saveVar.set(savePos)
 locationVar = StringVar(); locationVar.set(locationPos)
 # Set the geometry of tkinter frame
@@ -62,7 +62,7 @@ def open_win():  # opens new window for the tutorial
     Label(topframe, text="STEP 2: Hover over the purple and press 2",
           font=("Helvetica", 15)).pack()
     # step 3:
-    Label(topframe, text="STEP 3: Hover over the comment attribute box and press 3",
+    Label(topframe, text="STEP 3: Hover over the type attribute box and press 3",
           font=("Helvetica", 15)).pack()
     # step 4:
     Label(topframe, text="STEP 4: Hover over the save measurment button and press 4",
@@ -95,8 +95,8 @@ def open_win():  # opens new window for the tutorial
     Label(f1, textvariable=colorVar).pack(side=LEFT)
     Label(f2, text="Position of Purple Color: ").pack(side=LEFT)
     Label(f2, textvariable=purpleVar).pack(side=LEFT)
-    Label(f3, text="Position of Comment Section: ").pack(side=LEFT)
-    Label(f3, textvariable=commentVar).pack(side=LEFT)
+    Label(f3, text="Position of Type Section: ").pack(side=LEFT)
+    Label(f3, textvariable=typeVar).pack(side=LEFT)
     Label(f4, text="Position of Save Button: ").pack(side=LEFT)
     Label(f4, textvariable=saveVar).pack(side=LEFT)
     Label(f5, text="Position of Location Button: ").pack(side=LEFT)
@@ -123,32 +123,32 @@ def open_win():  # opens new window for the tutorial
 ########### keyboard press methods below ###########
 '''
 5 steps are done. First it clicks the colorPos then it clicks the color you choose. 
-Third the comment postion is clicked and pyautogui writes what ever string you used.
+Third the type postion is clicked and pyautogui writes what ever string you used.
 Fourth it clicks the savePos button and finally the location button to save the point.
 
 You can modify the order and add more commands if needed. 
 '''
-#N/A comment keypress function
+#N/A type keypress function
 def keyboard_press1(): 
     pyautogui.click(colorPos,button='left')
     pyautogui.click(purplePos, button = 'left')
-    pyautogui.click(commentPos); pyautogui.typewrite("N/A")
+    pyautogui.click(typePos); pyautogui.typewrite("N/A")
     pyautogui.click(savePos, button = 'left')
     pyautogui.click(locationPos, button = 'left')
 
-#DOT? comment keypress function
+#Backed CityBench type keypress function
 def keyboard_press2():
     pyautogui.click(colorPos,button='left')
     pyautogui.click(purplePos, button = 'left')
-    pyautogui.click(commentPos); pyautogui.typewrite("DOT?")
+    pyautogui.click(typePos); pyautogui.typewrite("Backed CityBench")
     pyautogui.click(savePos, button = 'left')
     pyautogui.click(locationPos, button = 'left')
 
-#Broken comment keypress function
+#Backless CityBench type keypress function
 def keyboard_press3():
     pyautogui.click(colorPos,button='left')
     pyautogui.click(purplePos, button = 'left')
-    pyautogui.click(commentPos); pyautogui.typewrite("Broken")
+    pyautogui.click(typePos); pyautogui.typewrite("Backless CityBench")
     pyautogui.click(savePos, button = 'left')
     pyautogui.click(locationPos, button = 'left')
 ########### end of keyboard press methods ###########
@@ -187,9 +187,9 @@ def step2(event):
     purpleVar.set(purplePos)#update global pos
 
 def step3(event):
-    global commentPos
-    commentPos = pyautogui.position()
-    commentVar.set(commentPos)#update global pos
+    global typePos
+    typePos = pyautogui.position()
+    typeVar.set(typePos)#update global pos
 
 def step4(event):
     global savePos
@@ -207,7 +207,7 @@ def saveData(): #use to save position data
     data = []
     data.append(colorPos)
     data.append(purplePos)
-    data.append(commentPos)
+    data.append(typePos)
     data.append(savePos)
     data.append(locationPos)
     print(data)
@@ -222,10 +222,10 @@ def openData(): #load in position data after starting program
     file = open('setupData', 'rb')
     data = pickle.load(file)
     file.close()
-    global colorPos, purplePos,commentPos,savePos,locationPos
+    global colorPos, purplePos,typePos,savePos,locationPos
     colorPos = data[0]
     purplePos = data[1]
-    commentPos = data[2]
+    typePos = data[2]
     savePos = data[3]
     locationPos = data[4]
     #Label(win,text="Loaded saved data successfully, You can start script")
@@ -236,7 +236,7 @@ def openData(): #load in position data after starting program
 def tempDisplay(): # use to test in terminal
     print("color postion: ", colorPos)
     print("purple postion: ", purplePos)
-    print("comment postion: ", commentPos)
+    print("type postion: ", typePos)
     print("save postion: ", savePos)
     print("location button: ", locationPos)
     print()
