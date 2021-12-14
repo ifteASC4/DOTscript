@@ -3,13 +3,6 @@
 #Modified by: Ifte Ahmed
 #DOT SDG SCRIPT
 
-'''
-Next steps: 
--edit readme file with steps you might need to start up etc
--make a video tutorial of how to start up
--make a document to show the steps and screenshot
-'''
-
 from tkinter import *
 from tkinter import ttk
 import keyboard
